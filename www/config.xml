@@ -61,5 +61,5 @@
     <preference name="xwalkCommandLine" value="disable-pull-to-refresh-effect" />
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" /-->
-    <plugin name="cordova-plugin-background-mode" spec="~0.6.5" />
+    <!--plugin name="cordova-plugin-background-mode" spec="~0.6.5" /-->
 </widget>
