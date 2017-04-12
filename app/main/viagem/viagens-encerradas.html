@@ -1,0 +1,151 @@
+<ion-view title="Manutenção das Viagens" attach-to-window="true">
+
+  <ion-pane>
+    <ion-header-bar class="bar-subheader sub-header alice duo">
+      <div class="row item-input-inset">
+        <div class="col col-33">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Destino" ng-model="vm.busca">
+            <clear-icon ng-show="vm.busca" ng-click="vm.clear('busca')"></clear-icon>
+          </label>
+        </div>
+        <div class="col col-25" style="height: 43px;">
+          <label class="item-input-wrapper" style="height: 100%;">
+            <div class="row" style="font-size: 17px;">
+              <div class="col col-90" ng-click="vm.changeDate()">
+                <span class="span-input">Saida: {{vm.buscaSaida | momentToDate}}</span>
+              </div>
+              <div class="col col-10" style="color: #D64541;">
+                <clear-icon ng-show="vm.buscaSaida"  ng-click="vm.clear('buscaSaida')"></clear-icon>
+              </div>
+            </div>
+          </label>
+        </div>
+        <div class="col col-33">
+          <button class="button button-energized" ng-click="vm.search($event)"
+                  style="width: 100px">
+            <b>Buscar</b>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-33">
+          <button class="button button-positive" style="width: 150px;" ng-click="vm.novaViagem()">
+            <plus-icon class="vertical-align-middle"></plus-icon>
+            <b>Adicionar</b></button>
+        </div>
+      </div>
+    </ion-header-bar>
+    <ion-content class="c-has-filter ion-content duo">
+      <ion-list>
+        <ion-item ng-show="vm.tracker.loading.active()" class="col-center card">
+          <ion-spinner icon="android"></ion-spinner>
+          Carregando ...
+        </ion-item>
+        <ion-item ng-show="vm.viagens.length===0 && vm.busca" class="item item-icon-right item-card">
+          <div class="row card padding-top">
+            Não foi encontrado nenhum registro com a descricao <b>"{{vm.busca}}"</b>
+          </div>
+        </ion-item>
+        <ion-item collection-repeat="viagem in vm.viagens"
+                  item="viagem"
+                  collection-item-height="150"
+                  collection-item-width="'100%'"
+                  class="item item-icon-right item-card">
+          <div class="row card padding-top" ng-show="!viagem.toDelete">
+            <div class="col col-10 padding-top col-center" ng-show="!viagem.toDelete">
+              <div class="button button-fab icon-md-48 avatar" ng-click="vm.edit(viagem)">
+                <car-icon></car-icon>
+              </div>
+            </div>
+            <div class="col col-75 padding-left" style="font-size: 20px">
+              <div class="row">
+                <div class="col padding-left">
+                  Motorista: {{::vm.motorista.nome}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-50  padding-left">
+                  Veículo: {{::vm.veiculo.descricao}}
+                </div>
+                <div class="col col-50 padding-left">
+                  Destino: {{viagem.nomeDestino}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-50 padding-left">
+                  Saída: {{viagem.saida | momentToDate}} às {{viagem.saida | momentToTime}}
+                </div>
+                <div class="col col-50 padding-left">
+                  Chegada: {{viagem.chegada | momentToDate}} às {{viagem.chegada | momentToTime}}
+                </div>
+              </div>
+            </div>
+            <div class="col col-10 col-center padding-left">
+              <div class="col col-50 padding-left">
+                <button class="button button-fab icon-md-32 button-calm" ng-click="vm.edit(viagem)">
+                  <edit-item-icon></edit-item-icon>
+                </button>
+              </div>
+              <div class="col col-50 padding-left">
+                <button class="button button-fab icon-md-32 button-assertive"
+                        ng-click="vm.toDelete(viagem)">
+                  <delete-item-icon></delete-item-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="row card padding-top item-to-delete padding-right" ng-show="viagem.toDelete">
+            <div class="col col-75 padding-top padding-left" style="font-size: 20px">
+              <div class="row">
+                <div class="col padding-left">
+                  Motorista: {{::vm.motorista.nome}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-50  padding-left">
+                  Veículo: {{::vm.veiculo.descricao}}
+                </div>
+                <div class="col col-50 padding-left">
+                  Destino: {{viagem.nomeDestino}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-50 padding-left">
+                  Saída: {{viagem.saida | momentToDate}} às {{viagem.saida | momentToTime}}
+                </div>
+                <div class="col col-50 padding-left">
+                  Chegada: {{viagem.chegada | momentToDate}} às {{viagem.chegada | momentToTime}}
+                </div>
+              </div>
+            </div>
+            <div class="col col-25 col-center padding-left card block-form-card padding-right">
+              <div class="col padding-vertical-zero">
+                <h2>Deseja excluir esta viagem?</h2>
+              </div>
+              <div class="col padding-vertical-zero">
+                <button class="button button-block button-small button-assertive" ng-click="vm.deleteViagem(viagem)">
+                  <done-icon></done-icon>
+                  SIM
+                </button>
+              </div>
+              <div class="col padding-vertical-zero">
+                <button class="button button-block button-small button-dark" ng-click="vm.toDelete(viagem)">
+                  <cancel-icon></cancel-icon>
+                  NÃO
+                </button>
+              </div>
+            </div>
+          </div>
+        </ion-item>
+        <ion-infinite-scroll
+          on-infinite="vm.loadMoreData()"
+          ng-if="vm.canLoad"
+          icon="ion-loading-c"
+          distance="1%">
+        </ion-infinite-scroll>
+      </ion-list>
+    </ion-content>
+  </ion-pane>
+</ion-view>

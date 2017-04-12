@@ -1,0 +1,28 @@
+{
+  "generator-m-ionic": {
+    "answers": {
+      "appName": "Diário de Bordo",
+      "appId": "com.celk.diariodebordo",
+      "ionicCss": false,
+      "bowerPackages": [
+        "angular-dynamic-locale#~0.1.27",
+        "angular-translate#~2.7.2",
+        "angular-translate-loader-static-files#~2.7.2",
+        "angular-localForage#~1.2.3"
+      ],
+      "platforms": [
+        "android"
+      ],
+      "plugins": [
+        "cordova-plugin-device",
+        "cordova-plugin-dialogs",
+        "cordova-plugin-inappbrowser",
+        "com.ionic.keyboard",
+        "cordova-plugin-network-information",
+        "cordova-plugin-splashscreen",
+        "cordova-plugin-statusbar"
+      ],
+      "appModule": "diarioDeBordo"
+    }
+  }
+}

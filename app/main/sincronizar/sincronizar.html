@@ -1,0 +1,20 @@
+<ion-view title="Sincronizar">
+  <ion-content>
+    <div class="row padding-left padding-top padding-right">
+      <div class="card" style="width: 100%;">
+        <div class="block-form-card">
+          <form name="vm.form">
+            <div class="padding">
+              <button class="button button-assertive ink" ng-click="vm.sincronizar()" ng-disabled="vm.tracker.connecting.tracking()">
+                <synchronize-icon ng-hide="vm.tracker.connecting.tracking()"></synchronize-icon>
+                <ion-spinner ng-show="vm.tracker.connecting.tracking()" icon="ios-small" class="spinner-light" style="vertical-align: middle"></ion-spinner>
+                Sincronizar!
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-view>

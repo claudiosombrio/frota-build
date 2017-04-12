@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <!-- ionic meta tags -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!-- custom meta tags -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
+    <title>Diário de Bordo</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/waves/dist/waves.min.css" />
+    <link rel="stylesheet" href="bower_components/ionic-material/dist/ionic.material.css" />
+    <link rel="stylesheet" href="bower_components/ionic-material/dist/ionic.material.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css main/styles/app.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="main/styles/main.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body ng-app="diarioDeBordo">
+
+    <!-- the nav bar will be updated as we navigate between views -->
+    <!-- <ion-nav-bar> can be removed when using sidemenu (contained in menu.html) -->
+    <ion-nav-bar class="bar-assertive">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <!-- the current view will be rendered in the <ion-nav-view> directive -->
+    <ion-nav-view></ion-nav-view>
+
+    <!-- will be a 404 during development -->
+    <script src="cordova.js"></script>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bindonce/bindonce.js"></script>
+    <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+    <script src="bower_components/br-validations/releases/br-validations.js"></script>
+    <script src="bower_components/string-mask/src/string-mask.js"></script>
+    <script src="bower_components/angular-input-masks/angular-input-masks-standalone.min.js"></script>
+    <script src="bower_components/localforage/dist/localforage.js"></script>
+    <script src="bower_components/angular-localForage/dist/angular-localForage.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="bower_components/humanize-duration/humanize-duration.js"></script>
+    <script src="bower_components/angular-timer/dist/angular-timer.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-ui-validate/dist/validate.js"></script>
+    <script src="bower_components/ionic/release/js/ionic.js"></script>
+    <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
+    <script src="bower_components/waves/dist/waves.min.js"></script>
+    <script src="bower_components/ionic-material/dist/ionic.material.js"></script>
+    <script src="bower_components/ionic-material/dist/ionic.material.min.js"></script>
+    <script src="bower_components/jsSHA/src/sha.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+    <script src="bower_components/ngCordova/dist/ng-cordova.js"></script>
+    <script src="bower_components/promise-tracker/promise-tracker.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
+    <script src="bower_components/squel/squel.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js scripts/app.js -->
+    <!-- inject:js -->
+    <script src="main/main.module.js"></script>
+    <script src="main/view-inicial/init-config.factory.js"></script>
+    <script src="main/view-inicial/inicio.controller.js"></script>
+    <script src="main/viagem/viagem.module.js"></script>
+    <script src="main/viagem/viagens-encerradas.controller.js"></script>
+    <script src="main/viagem/viagem.service.js"></script>
+    <script src="main/viagem/emviagem/viajando.controller.js"></script>
+    <script src="main/viagem/emviagem/nova-viagem.controller.js"></script>
+    <script src="main/viagem/emviagem/encerrar-viagem.controller.js"></script>
+    <script src="main/viagem/directives/km-inicial.directive.js"></script>
+    <script src="main/viagem/directives/km-final.directive.js"></script>
+    <script src="main/viagem/cadastro-viagem.controller.js"></script>
+    <script src="main/usuario/usuario.module.js"></script>
+    <script src="main/usuario/veiculo/veiculo.service.js"></script>
+    <script src="main/usuario/veiculo/select-veiculo.controller.js"></script>
+    <script src="main/usuario/roteiro/roteiro.module.js"></script>
+    <script src="main/usuario/roteiro/select-roteiro.controller.js"></script>
+    <script src="main/usuario/roteiro/roteiro.service.js"></script>
+    <script src="main/usuario/passageiros/passageiros.module.js"></script>
+    <script src="main/usuario/passageiros/passageiros.service.js"></script>
+    <script src="main/usuario/passageiros/passageiros.controller.js"></script>
+    <script src="main/usuario/passageiros/listapassageiro.directive.js"></script>
+    <script src="main/usuario/motorista/select-motorista.controller.js"></script>
+    <script src="main/usuario/motorista/motorista.service.js"></script>
+    <script src="main/usuario/login/login-validator.service.js"></script>
+    <script src="main/usuario/login/login-event-emitter.factory.js"></script>
+    <script src="main/usuario/cidade/cidade.module.js"></script>
+    <script src="main/usuario/cidade/cidade.service.js"></script>
+    <script src="main/usuario/cidade/cidade.controller.js"></script>
+    <script src="main/templates.js"></script>
+    <script src="main/sincronizar/sincronizacao.module.js"></script>
+    <script src="main/sincronizar/sincronizar.controller.js"></script>
+    <script src="main/sincronizar/sincronizando.controller.js"></script>
+    <script src="main/sincronizar/sincronizando.config.js"></script>
+    <script src="main/sincronizar/integracao.factory.js"></script>
+    <script src="main/main.run.js"></script>
+    <script src="main/main.config.js"></script>
+    <script src="main/icons/material-design-icons.module.js"></script>
+    <script src="main/icons/services/material-icons.factory.js"></script>
+    <script src="main/icons/directives/user-icon.directive.js"></script>
+    <script src="main/icons/directives/travels-icon.directive.js"></script>
+    <script src="main/icons/directives/traveling-icon.directive.js"></script>
+    <script src="main/icons/directives/synchronize-icon.directive.js"></script>
+    <script src="main/icons/directives/save-icon.directive.js"></script>
+    <script src="main/icons/directives/plus-icon.directive.js"></script>
+    <script src="main/icons/directives/play-icon.directive.js"></script>
+    <script src="main/icons/directives/people-icon.directive.js"></script>
+    <script src="main/icons/directives/next-icon.directive.js"></script>
+    <script src="main/icons/directives/new-travel-icon.directive.js"></script>
+    <script src="main/icons/directives/home-icon.directive.js"></script>
+    <script src="main/icons/directives/finish-travel-icon.directive.js"></script>
+    <script src="main/icons/directives/exit-icon.directive.js"></script>
+    <script src="main/icons/directives/editlocation-icon.directive.js"></script>
+    <script src="main/icons/directives/edit-item-icon.directive.js"></script>
+    <script src="main/icons/directives/driver-icon.directive.js"></script>
+    <script src="main/icons/directives/done-icon.directive.js"></script>
+    <script src="main/icons/directives/delete-item-icon.directive.js"></script>
+    <script src="main/icons/directives/config-icon.directive.js"></script>
+    <script src="main/icons/directives/clock-icon.directive.js"></script>
+    <script src="main/icons/directives/clear-icon.directive.js"></script>
+    <script src="main/icons/directives/city-icon.directive.js"></script>
+    <script src="main/icons/directives/check-icon.directive.js"></script>
+    <script src="main/icons/directives/car-icon.directive.js"></script>
+    <script src="main/icons/directives/cancel-icon.directive.js"></script>
+    <script src="main/icons/directives/calendar-icon.directive.js"></script>
+    <script src="main/icons/directives/back-icon.directive.js"></script>
+    <script src="main/icons/constants/templates.constant.js"></script>
+    <script src="main/db/database.module.js"></script>
+    <script src="main/db/operations/squel.factory.js"></script>
+    <script src="main/db/operations/db-client.service.js"></script>
+    <script src="main/db/initdatabase/tables.provider.js"></script>
+    <script src="main/db/initdatabase/tables.factory.js"></script>
+    <script src="main/db/initdatabase/database.provider.js"></script>
+    <script src="main/db/initdatabase/createdatabase.service.js"></script>
+    <script src="main/common/common.module.js"></script>
+    <script src="main/common/stringbuilder/string-builder.factory.js"></script>
+    <script src="main/common/popups/popup.factory.js"></script>
+    <script src="main/common/menu/menu.controller.js"></script>
+    <script src="main/common/localstorage/localstorage.provider.js"></script>
+    <script src="main/common/ionicutils/ionic-utils.service.js"></script>
+    <script src="main/common/input/ck-required.directive.js"></script>
+    <script src="main/common/input/ck-maxlength.directive.js"></script>
+    <script src="main/common/event/event-emitter.js"></script>
+    <script src="main/common/datetime/moment-to-time.filter.js"></script>
+    <script src="main/common/datetime/moment-to-date.filter.js"></script>
+    <script src="main/common/datetime/moment.factory.js"></script>
+    <script src="main/common/datetime/datetimepicker.service.js"></script>
+    <script src="main/common/datetime/ck-button-time.directive.js"></script>
+    <script src="main/common/datetime/ck-button-date.directive.js"></script>
+    <script src="main/common/criptografia/js-sha.factory.js"></script>
+    <script src="main/common/configuracao/parametros-app.factory.js"></script>
+    <script src="main/common/configuracao/configuracao.controller.js"></script>
+    <script src="main/common/common.states.js"></script>
+    <script src="main/common/common.config.js"></script>
+    <script src="app.js"></script>
+    <script src="app.run.js"></script>
+    <script src="app.config.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+  </body>
+</html>

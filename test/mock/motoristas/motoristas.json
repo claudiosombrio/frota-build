@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "codigoSistema": 1,
+    "nome": "motorista 1",
+    "usuario": "motorista1",
+    "senha": "123"
+  },
+
+  {
+  "id": 2,
+  "codigoSistema": 1,
+  "nome": "motorista 2",
+  "usuario": "motorista2",
+  "senha": "123"
+  },
+
+  {
+  "id": 3,
+  "codigoSistema": 1,
+  "nome": "motorista 3",
+  "usuario": "motorista3",
+  "senha": "123"
+  },
+
+  {
+  "id": 4,
+  "codigoSistema": 1,
+  "nome": "motorista 4",
+  "usuario": "motorista4",
+  "senha": "123"
+  }
+]

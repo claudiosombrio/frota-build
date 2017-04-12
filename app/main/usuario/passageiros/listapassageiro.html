@@ -1,0 +1,41 @@
+<div ng-if="!layout"  class="row">
+  <div ng-if="size === '2'" class="col col col-75 text-vertical-middle" ><h2>{{label}}</h2></div>
+  <div ng-if="size === '3'" class="col col-80 text-vertical-middle" ><h3>{{label}}</h3></div>
+  <div ng-if="size === '4'" class="col col-80 text-vertical-middle" ><h4>{{label}}</h4></div>
+  <div ng-if="size === '2'" class="col col-25 button-block-vertical padding-left" style="margin-left: -10px;">
+    <button ng-show="vm.passageiroExiste" ng-click="vm.togglePassageiro()" class="button button-fab button-small button-calm" >
+      <people-icon></people-icon>
+    </button>
+    <button ng-show="!vm.passageiroExiste" class="button button-fab button-small button-calm bt-disabled">
+      <people-icon></people-icon>
+    </button>
+  </div>
+  <div ng-if="size !== '2'" class="col col-25 button-block-vertical padding-left" style="margin-left: -10px;">
+    <button ng-show="vm.passageiroExiste" ng-click="vm.togglePassageiro()" class="button button-fab button-small button-calm" >
+      <people-icon></people-icon>
+    </button>
+    <button ng-show="!vm.passageiroExiste" class="button button-fab button-small button-calm bt-disabled">
+      <people-icon></people-icon>
+    </button>
+  </div>
+</div>
+
+<div ng-if="layout === '1'" class="col-25">
+  <div class="row">
+    <div class="col">
+      <span class="input-label">{{label}}:</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-20">
+      <button ng-show="vm.passageiroExiste" ng-click="vm.togglePassageiro()" class="button button-fab button-small button-calm" >
+        <people-icon></people-icon>
+      </button>
+      <button ng-show="!vm.passageiroExiste" class="button button-fab button-small button-calm bt-disabled">
+        <people-icon></people-icon>
+      </button>
+    </div>
+    <div class="col col-80 font-24">
+    </div>
+  </div>
+</div>

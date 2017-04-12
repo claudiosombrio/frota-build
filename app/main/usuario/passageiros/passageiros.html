@@ -1,0 +1,88 @@
+<ion-view title="{{vm.title}}" attach-to-window="true">
+  <ion-pane>
+    <ion-content>
+      <ion-list>
+        <ion-item ng-show="vm.tracker.loading.active()" class="col-center card">
+          <ion-spinner icon="android"></ion-spinner>
+          Carregando ...
+        </ion-item>
+        <ion-item ng-show="vm.passageiros.length===0" class="item item-icon-right item-card">
+          <div class="row card">
+            Não há passageiros listados para a viagem.
+          </div>
+        </ion-item>
+        <ion-item collection-repeat="passageiro in vm.passageiros"
+                  item="passageiro"
+                  collection-item-height="215"
+                  collection-item-width="'100%'"
+                  class="item item-icon-right item-card">
+          <div class="row card" ng-click="vm.save(passageiro)">
+            <div class="col col-10 col-center">
+              <div ng-show="passageiro.status === 2" class="button button-fab icon-md-48 avatarGreen" >
+                <check-icon></check-icon>
+              </div>
+              <div ng-show="passageiro.status === 1" class="button button-fab icon-md-48 avatarRed">
+                <clear-icon></clear-icon>
+              </div>
+            </div>
+            <div class="col col-75 padding-left" style="font-size: 20px">
+              <div class="row">
+                <div class="col padding-left">
+                  Passageiro: {{passageiro.nomeUsuario}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-50  padding-left">
+                  Local Embarque: {{passageiro.localEmbarque}}
+                </div>
+                <div class="col col-50 padding-left">
+                  Destino: {{passageiro.destino}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-50 padding-left">
+                  Tipo: {{passageiro.tpViagem}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row card" >
+            <div class="col col-10" >
+            </div>
+            <div ng-show ="!!passageiro.openDescription" class="col col-75 padding-left" style="font-size: 20px">
+              <div class="row">
+                <div class="col padding-left">
+                  Telefone: {{passageiro.telefone}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col padding-left">
+                  Horário: {{passageiro.horario | momentToTime}}
+                </div>
+                <div class="col  padding-left">
+                  Observação: {{passageiro.observacao}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </ion-item>
+        <ion-infinite-scroll
+          on-infinite="vm.loadMoreData()"
+          ng-if="vm.canLoad"
+          icon="ion-loading-c"
+          distance="1%">
+        </ion-infinite-scroll>
+      </ion-list>
+    </ion-content>
+    <ion-footer-bar style="height: 12%" class="silver">
+      <div class="col">
+        <button class="button button-full button-large button-stable ink" ng-click="vm.back();" style="padding: 0; width: 100%; min-height: 45px">
+          <done-icon></done-icon>
+          <span>OK</span>
+        </button>
+      </div>
+    </ion-footer-bar>
+  </ion-pane>
+</ion-view>

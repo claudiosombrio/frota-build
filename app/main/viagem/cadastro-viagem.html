@@ -1,0 +1,203 @@
+<ion-view title="Cadastro Viagem">
+
+  <ion-content>
+    <div class="row padding-left padding-top padding-right">
+      <div class="card" style="width: 100%">
+        <div class="block-form-card">
+          <form name="vm.form">
+            <label class="row item item-input item-stacked-label" ng-class="{ 'has-error' : vm.form.destino.$invalid  && (!vm.form.destino.$pristine || vm.form.$submitted)}">
+              <div class="col col-50">
+                <div class="row">
+                  Motorista: {{::vm.viagem.motorista.nome}}
+                </div>
+                <div class="col col-50">
+                  Veículo: {{::vm.viagem.veiculo.descricao}}
+                </div>
+              </div>
+              <div class="col col-25">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Destino:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <button class="button button-fab button-small button-calm" ng-click="vm.goCidade()">
+                    <city-icon></city-icon>
+                  </button>
+                  <div class="col col-80 font-24">
+                    &nbsp;{{vm.viagem.nomeDestino}}
+                  </div>
+                </div>
+                  <div ng-messages="vm.form.destino.$error" role="alert" ng-show="!vm.form.destino.$pristine || vm.form.$submitted">
+                    <div class="form-error" ng-message="ck-required">Preencha o campo "Destino"</div>
+                  </div>
+              </div>
+            </label>
+            <label class="row item item-input item-stacked-label" data-tap-disabled="true">
+              <div class="col col-25">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Data Inicial:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="chegadaDate" class="col col-20">
+                    <ck-button-date ng-model="vm.viagem.saida" listener="vm.saidaListener">
+                      <calendar-icon></calendar-icon>
+                    </ck-button-date>
+                  </div>
+                  <div class="col col-80 font-24">
+                    {{vm.viagem.saida | momentToDate}}
+                  </div>
+                </div>
+              </div>
+              <div class="col col-25">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Horário Inicial:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="chegadaTime" class="col col-20">
+                    <ck-button-time ng-model="vm.viagem.saida" listener="vm.saidaListener">
+                      <clock-icon></clock-icon>
+                    </ck-button-time>
+                  </div>
+                  <div class="col col-80 font-24">
+                    {{vm.viagem.saida | momentToTime}}
+                  </div>
+                </div>
+              </div>
+              <div class="col col-25" ng-click="vm.openDatePicker(vm.viagem.chegada)">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Data Final:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="finalDate" class="col col-20">
+                    <ck-button-date ng-model="vm.viagem.chegada" listener="vm.chegadaListener">
+                      <calendar-icon></calendar-icon>
+                    </ck-button-date>
+                  </div>
+                  <div class="col col-80 font-24">
+                    {{vm.viagem.chegada | momentToDate}}
+                  </div>
+                </div>
+              </div>
+              <div class="col col-25" ng-click="vm.openTimePicker(vm.viagem.chegada)">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Horário Final:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="finalTime" class="col col-20">
+                    <ck-button-time ng-model="vm.viagem.chegada" listener="vm.chegadaListener">
+                      <clock-icon></clock-icon>
+                    </ck-button-time>
+                  </div>
+                  <div class="col col-80 font-24">
+                    {{vm.viagem.chegada | momentToTime}}
+                  </div>
+                </div>
+              </div>
+            </label>
+            <div class="row">
+              <label class="item item-input item-stacked-label" data-tap-disabled="true">
+                <listapassageiro codigoRoteiro="vm.viagem.codigoRoteiro" layout="1" readOnly="true" class="col-25" size="4" label="Passageiros"></listapassageiro>
+              </label>
+              <label class="item item-input item-stacked-label" data-tap-disabled="true">
+                <listapassageiro codigoRoteiro="vm.viagem.codigoRoteiro" layout="1" readOnly="false" class="col-25" size="4" label="Presença"></listapassageiro>
+              </label>
+              <label class="item item-input item-stacked-label" data-tap-disabled="true">
+                <div class="col col-25">
+                  <div class="row">
+                    <div class="col" style="margin-top: -8px">
+                      <span class="input-label">Roteiro:</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <button ng-show="vm.roteiroExiste" class="button button-fab button-small button-calm" ng-click="vm.goRoteiro()">
+                      <editlocation-icon></editlocation-icon>
+                    </button>
+                    <button ng-show="!vm.roteiroExiste" class="button button-fab button-small button-calm bt-disabled">
+                      <editlocation-icon></editlocation-icon>
+                    </button>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <label class="row item item-input item-stacked-label" data-tap-disabled="true">
+              <div class="col col-33">
+                <div class="row" ng-click="vm.focus('kmInicial', $event)">
+                  <div class="col">
+                    <span class="input-label">KM Inicial:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <input-km-inicial ng-model="vm.viagem.kmInicial" km-final="vm.viagem.kmFinal" km-form="vm.form"></input-km-inicial>
+                </div>
+              </div>
+              <div class="col col-33">
+                <div class="row" ng-click="vm.focus('kmFinal', $event)">
+                  <div class="col">
+                    <span class="input-label">KM Final:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <input-km-final ng-model="vm.viagem.kmFinal" km-inicial="vm.viagem.kmInicial" km-form="vm.form"></input-km-final>
+                </div>
+              </div>
+              <div class="col col-33">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Local Saída:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <input required="required" name="localSaida" style="display:block; height: 32px;" ng-model="vm.viagem.localSaida" />
+                </div>
+                <div class="row" role="alert">
+                  <div class="form-error" ng-if="vm.form.localSaida.$invalid && (!vm.form.localSaida.$pristine || vm.form.$submitted)">Preencha o campo "Local de Saída"</div>
+                </div>
+              </div>
+            </label>
+            <label class="row item item-input item-stacked-label">
+              <div class="col">
+                <div class="row">
+                  <div class="col">
+                    <span class="input-label">Observação:</span>
+                  </div>
+                </div>
+                <div class="row">
+                  <textarea rows="3" cols="100" ng-model="vm.viagem.observacao" ck-max-length="200"></textarea>
+                </div>
+              </div>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div></div>
+
+    <div class=" padding-left padding-right">
+      <div class="row">
+        <div class="col col-50">
+          <button class="button button-full button-large button-stable ink" ng-click="vm.cancel()">
+            <cancel-icon></cancel-icon>
+            Cancelar
+          </button>
+        </div>
+        <div class="col col-50">
+          <button class="button button-full button-large button-positive ink" ng-click="vm.save()">
+            <save-icon></save-icon>
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+
+</ion-view>

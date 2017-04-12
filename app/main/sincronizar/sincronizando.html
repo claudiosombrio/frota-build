@@ -1,0 +1,31 @@
+<ion-view title="Sincronizando">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item item-icon-right item-card">
+        <div class="card">
+          <div class="item item-text-wrap item-stable">
+            <h2>Sincronizando Dados</h2>
+          </div>
+        </div>
+      </ion-item>
+
+      <ion-item collection-repeat="log in vm.logSincronizacao" class="item item-icon-right item-card">
+        <div class="card">
+          <div class="item item-text-wrap item-stable" ng-class="{'item-royal': log.success, 'item-energized': log.error}">
+            {{log.mensagem}}
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-item ng-if="vm.successful" class="item item-icon-right item-card">
+      <div class="row">
+        <div class="col col-75">
+          <button class="button button-positive" ng-click="vm.goHome()">
+            OK
+          </button>
+        </div>
+      </div>
+    </ion-item>
+
+  </ion-content>
+</ion-view>
