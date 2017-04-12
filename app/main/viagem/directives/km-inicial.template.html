@@ -1,6 +1,0 @@
-<div class="km-input" ng-class="{ 'has-error' : kmForm.kmInicial.$invalid && (!kmForm.kmInicial.$pristine || kmForm.$submitted)}">
-  <input id="kmInicial" ng-if="kmFinal" type="number" name="kmInicial" ng-model="vm.model" ng-change="vm.refreshModel()" min="0" ck-required ui >
-  <input id="kmInicial" ng-if="!kmFinal" type="number" name="kmInicial" ng-model="vm.model" ng-change="vm.refreshModel()" min="0" ck-required>
-   <div class="form-error" ng-if="kmForm.kmInicial.$invalid && (!kmForm.kmInicial.$pristine || kmForm.$submitted)">Preencha o campo KM Inicial.</div>
-   <div class="form-error" ng-if="kmForm.kmInicial < kmForm.kmFinal">O KM Inicial não pode ser maior que o KM Final</div>
-</div>
